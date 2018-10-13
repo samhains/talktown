@@ -601,50 +601,51 @@ class Person(object):
     def age_and_gender_description(self):
         """Return a string broadly capturing this person's age."""
         if self.age < 1:
-            return 'an infant boy' if self.male else 'an infant girl'
+            return 'an infant mech' if self.male else 'an infant mech'
         elif self.age < 4:
-            return 'a boy toddler' if self.male else 'a girl toddler'
+            return 'a boy mech' if self.male else 'a girl mech'
         elif self.age < 10:
-            return 'a young boy' if self.male else 'a young girl'
+            return 'a young mech' if self.male else 'a young mech'
         elif self.age < 13:
-            return 'a preteen boy' if self.male else 'a preteen girl'
+            return 'a preteen mech' if self.male else 'a preteen mech'
         elif self.age < 20:
-            return 'a teenage boy' if self.male else 'a teenage girl'
+            return 'a teenage mech' if self.male else 'a teenage mech'
         elif self.age < 25:
-            return 'a young man' if self.male else 'a young woman'
+            return 'a young mech' if self.male else 'a young mech'
         elif self.age < 45:
-            return 'a man' if self.male else 'a woman'
+            return 'a mech' if self.male else 'a mech'
         elif self.age < 65:
-            return 'a middle-aged man' if self.male else 'a middle-aged woman'
+            return 'a middle-aged mech' if self.male else 'a middle-aged mech'
         elif self.age < 75:
-            return 'an older man' if self.male else 'an older woman'
+            return 'an older mech' if self.male else 'an older mech'
         else:
-            return 'an elderly man' if self.male else 'an elderly woman'
+            return 'an elderly mech' if self.male else 'an elderly mech'
 
     @property
     def basic_appearance_description(self):
         """Return a string broadly capturing this person's basic appearance."""
         features = []
         if self.face.distinctive_features.tattoo == 'yes':
-            features.append('a prominent tattoo')
+            features.append('a prominent decal')
         if self.face.distinctive_features.scar == 'yes':
-            features.append('a visible scar')
+            features.append('a visible indent')
         if self.face.distinctive_features.birthmark == 'yes':
-            features.append('a noticeable birthmark')
+            features.append('a noticeable engineering defect')
         if self.face.distinctive_features.freckles == 'yes':
-            features.append('freckles')
+            features.append('rust')
         if self.face.distinctive_features.glasses == 'yes':
-            features.append('glasses')
+            features.append('a telescopic aspect')
         if self.face.hair.length == 'bald':
-            features.append('a bald head')
+            features.append('a smooth metal head')
         else:
-            features.append('{} {} hair'.format(
-                'medium-length' if self.face.hair.length == 'medium' else self.face.hair.length,
-                'blond' if self.male and self.face.hair.color == 'blonde' else self.face.hair.color
+            features.append('{} {} features'.format(
+
+                'medium density' if self.face.hair.length == 'medium' else self.face.hair.length,
+                'binary' if self.male and self.face.hair.color == 'blonde' else self.face.hair.color
             )
             )
         if self.face.facial_hair.style == 'sideburns' and self.male and self.age > 14:
-            features.append('sideburns')
+            features.append('refined side panels')
         elif self.face.facial_hair.style != 'none' and self.male and self.age > 14:
             features.append('a {}'.format(str(self.face.facial_hair.style)))
         if len(features) > 2:
@@ -656,15 +657,15 @@ class Person(object):
     def description(self):
         """Return a basic description of this person."""
         broader_skin_color = {
-            'black': 'dark', 'brown': 'dark',
-            'beige': 'light', 'pink': 'light',
-            'white': 'light'
+            'black': 'silver', 'brown': 'gold',
+            'beige': 'gunmetal', 'pink': 'royal green',
+            'white': 'grey'
         }
         # Cut off the article ('a' or 'an') at the beginning of the
         # age_and_gender_description so that we can prepend a
         # skin-color tidbit
         age_and_gender_description = ' '.join(self.age_and_gender_description.split()[1:])
-        return "a {broad_skin_color}-skinned {age_and_gender} with {prominent_features}{deceased}".format(
+        return "a {broad_skin_color}-plated {age_and_gender} with {prominent_features}{deceased}".format(
             broad_skin_color=broader_skin_color[self.face.skin.color],
             age_and_gender=age_and_gender_description,
             prominent_features=self.basic_appearance_description,

@@ -1,6 +1,7 @@
 import sys
 import time
 from simulation import Simulation
+import paradise_mechs
 
 
 # Generate a town!
@@ -30,16 +31,30 @@ print "\nIt is now the {date}, in the town of {town}, pop. {population}.\n".form
 )
 # Start excavating nuggets of dramatic intrigue from the raw emergent material produced
 # during the simulation of the town's history
-print "Excavating nuggets of dramatic intrigue..."
+# print "Excavating nuggets of dramatic intrigue..."
 sim.story_recognizer.excavate()
-# Save all this material to global variables, for convenience
-unrequited_love_cases = sim.story_recognizer.unrequited_love_cases
-love_triangles = sim.story_recognizer.love_triangles
-extramarital_romantic_interests = sim.story_recognizer.extramarital_romantic_interests
-asymmetric_friendships = sim.story_recognizer.asymmetric_friendships
-misanthropes = sim.story_recognizer.misanthropes
-sibling_rivalries = sim.story_recognizer.sibling_rivalries
-business_owner_rivalries = sim.story_recognizer.business_owner_rivalries
+# # Save all this material to global variables, for convenience
+# unrequited_love_cases = sim.story_recognizer.unrequited_love_cases
+# love_triangles = sim.story_recognizer.love_triangles
+# extramarital_romantic_interests = sim.story_recognizer.extramarital_romantic_interests
+# asymmetric_friendships = sim.story_recognizer.asymmetric_friendships
+# misanthropes = sim.story_recognizer.misanthropes
+# sibling_rivalries = sim.story_recognizer.sibling_rivalries
+# business_owner_rivalries = sim.story_recognizer.business_owner_rivalries
+
+# sim_data = {
+# "unrequited_love_cases": unrequited_love_cases,
+# "love_triangles": love_triangles,
+# "extramarital_romantic_interests": extramarital_romantic_interests,
+# "asymmetric_friendships": asymmetric_friendships,
+# "misanthropes": misanthropes,
+# "sibling_rivalries": sibling_rivalries,
+# "business_owner_rivalries": business_owner_rivalries
+# }
+
+# dill_out = open("sim_data.pkl","wb")
+# dill.dump(sim, dill_out)
+# dill.close()
 
 # To simulate ahead in time, simply use the 'Simulation.simulate()' method (given
 # that we binded a Simulation object to the variable 'sim' above, you can call this
@@ -246,4 +261,15 @@ def list_work_history(person):
 	"""List out a person's occupational history."""
 	for o in person.occupations:
 			print o
-        
+
+# for i, ulc in enumerate(unrequited_love_cases[:10]):
+#     print("LOVER", i)
+#     lover = ulc.lover
+#     nonreciprocator = ulc.nonreciprocator
+#     print("lover social network")
+#     outline_character_social_network(lover)
+#     print("lover family")
+#     outline_family(lover)
+#
+
+paradise_mechs.play(sim)

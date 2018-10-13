@@ -375,6 +375,16 @@ class Relationship(object):
         return "{} ({} days ago)".format(
             base_str, self.owner.sim.ordinal_date-ordinal_date_they_last_met
         )
+    def relationship_dict(self):
+        return {
+            "type": self.type,
+            "relation": self.owner.relation_to_me(self.subject),
+            "first_met_str": self.first_met_str,
+            "last_met_str": self.last_met_str,
+            "n_interactions": self.total_interactions,
+            "charge": self.charge,
+            "spark": self.spark
+        }
 
     def outline(self):
         """Outline this relationship for display during gameplay."""

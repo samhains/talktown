@@ -70,7 +70,7 @@ class Simulation(object):
     def establish_setting(self):
         """Establish the town that will be simulated."""
         # Generate a town plan with at least two tracts
-        print "Generating a town..."
+        print "Generating Paradise Hotel..."
         time.sleep(0.7)
         self.town = Town(self)
         while len(self.town.tracts) < 2:
@@ -96,7 +96,8 @@ class Simulation(object):
             self.town.mayor = farmer  # TODO actual mayor stuff
         # Name the town -- has to come before the cemetery is instantiated,
         # so that the cemetery can be named after it
-        self.town.name = self._generate_name_for_town()
+        # self.town.name = self._generate_name_for_town()
+        self.town.name = "Paradise Hotel"
         # Establish a cemetery -- it doesn't matter who the owner is for
         # public institutions like a cemetery, it will just be used as a
         # reference with which to access this simulation instance

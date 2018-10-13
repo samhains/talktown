@@ -1,16 +1,17 @@
 import os
-import pickle
+import cPickle as pickle
 import random
 import math
+from pathlib import Path
 
 
 class Names(object):
     """A class that accesses names corpora to return random names."""
-    names_by_decade = pickle.load(open(
-        os.getcwd()+'/corpora/american_names_by_decade_with_'
-        'fitted_probability_distributions.dat', 'rb'
-    )
-    )
+    name_path = os.getcwd()+'\\corpora\\american_names_by_decade_with_fitted_probability_distributions.dat'
+    p_file = open(name_path)
+    print(name_path)
+
+    names_by_decade = pickle.load(p_file)
     miscellaneous_masculine_forenames = tuple(
         name[:-1] for name in
         open(os.getcwd()+'/corpora/masculine_names.txt', 'r')
